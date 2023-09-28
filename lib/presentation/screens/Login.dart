@@ -7,6 +7,7 @@ import 'package:untitled/businessLogic/bloc/login/login_bloc.dart';
 import 'package:untitled/data/model/LoginModel.dart';
 import 'package:untitled/utils/render/ElemRender.dart';
 import 'package:untitled/utils/render/UIrender.dart';
+import 'package:untitled/utils/service/DebugService.dart';
 
 class LoginScreen extends StatefulWidget{
   const LoginScreen({Key? key}) : super(key: key);
@@ -163,65 +164,66 @@ class _LoginScreenState extends State<LoginScreen> {
                               )
                             ],
                           ),
-                          Center(
-                            child: Container(
-                              height: 40,
-                              width: 150,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Color(0xffec702e),
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(50),
-                                gradient: const LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment(0.8, 1),
-                                  colors: <Color>[
-                                    Color(0xffec702e),
-                                    Color(0xffff9500)
-                                  ],
-                                  // Gradient from https://learnui.design/tools/gradient-generator.html
-                                  tileMode: TileMode.mirror,
-                                ),
-                              ),
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.transparent,
-                                  shadowColor: Colors.transparent,
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
+                          BlocListener<LoginBloc, LoginState>(
+                            listener: (context, loginState){
+                              loginState.maybeMap(
+                                  success: (loginState){
+                                    print("LoginOK");
+                                  },
+                                  orElse: (){
+
+                                  });
+                            },
+                            child:  Center(
+                              child: Container(
+                                height: 40,
+                                width: 150,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Color(0xffec702e),
+                                    width: 1.0,
                                   ),
-                                  // padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-                                ),
-                                onPressed: () {
-                                  _handleLogin();
-                                  // if (_phoneNum.text.trim() ==
-                                  //     loginList.first.phoneNumber &&
-                                  //     _pass.text.trim() ==
-                                  //         loginList.first.password)
-                                  // {
-                                  //   UIrender.showDialog(context, "Thông báo",
-                                  //       "Đăng nhập thành công");
-                                  //   loginPreference.setString("phoneNum", _phoneNum.text.trim());
-                                  //   loginPreference.setString("pass", _pass.text.trim());
-                                  // }
-                                  // else
-                                  //   UIrender.showDialog(context, "Thông báo",
-                                  //       "Thông tin số điện thoại hoặc mật khẩu không đúng");
-                                },
-                                child: const Text(
-                                  'Đăng nhập',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w900,
+                                  borderRadius: BorderRadius.circular(50),
+                                  gradient: const LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment(0.8, 1),
+                                    colors: <Color>[
+                                      Color(0xffec702e),
+                                      Color(0xffff9500)
+                                    ],
+                                    // Gradient from https://learnui.design/tools/gradient-generator.html
+                                    tileMode: TileMode.mirror,
                                   ),
                                 ),
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.transparent,
+                                    shadowColor: Colors.transparent,
+                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    // padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                                  ),
+                                  onPressed: () {
+                                    _handleLogin();
+                                  },
+                                  child: const Text(
+                                    'Đăng nhập',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                ),
+
+
                               ),
                             ),
                           ),
+
                           Column(children: [
                             Container(
                               margin: const EdgeInsets.fromLTRB(0, 17, 0, 5),

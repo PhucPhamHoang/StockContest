@@ -6,7 +6,7 @@ class ApplicationSetting{
   static final instance = ApplicationSetting._();
 
   DateTime? currentBackPressTime;
-  String currentPageName = '';
+ // String currentPageName = '';
 
   String notiToken = '';
   Map<String, String> requestHeader = {

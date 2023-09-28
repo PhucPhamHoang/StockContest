@@ -55,8 +55,6 @@ class NetworkService{
   }) async {
     try {
       Map<String, String> header = ApplicationSetting.instance.requestHeader;
-      print("@@@");
-      print(ApplicationSetting.instance.requestHeader);
       if (url.contains('/login')) {
         header['noti-token'] = ApplicationSetting.instance.notiToken;
       } else {

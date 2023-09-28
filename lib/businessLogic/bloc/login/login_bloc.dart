@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:untitled/data/model/DefaultResponseModel.dart';
 import 'package:untitled/data/model/LoginModel.dart';
 import 'package:untitled/data/repository/LoginRepository.dart';
 import 'package:untitled/utils/render/ValueRender.dart';
@@ -18,8 +19,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         String encodePassword =
         ValueRender.instance.getEncodeSha256(event.passWord);
 
-        await _loginRepository.login(event.userName, encodePassword);
-        emit(_SuccessState(state.data));
+        DefaultResponseModel response = await _loginRepository.login(event
+            .userName,
+            encodePassword);
+        if(response.result == 'success'){
+          emit(_SuccessState(state.data));
+        }
       }
       catch (e){
         DebugService.printConsole('catch $e');
