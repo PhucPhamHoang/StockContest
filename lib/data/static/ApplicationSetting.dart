@@ -9,11 +9,7 @@ class ApplicationSetting{
  // String currentPageName = '';
 
   String notiToken = '';
-  Map<String, String> requestHeader = {
-    'accept': '*/*',
-    'Connection': 'keep-alive',
-    'Content-Type': 'application/json; charset=utf-8',
-  };
+  Map<String, String> requestHeader = {};
 
   late SharedPreferences sharedPreferences;
 }

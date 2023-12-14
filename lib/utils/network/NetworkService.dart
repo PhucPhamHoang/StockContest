@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:untitled/data/static/ApplicationSetting.dart';
+import 'package:untitled/data/static/enum/SharedPreferencesEnum.dart';
 import 'package:untitled/utils/service/DebugService.dart';
 
 
@@ -10,7 +11,7 @@ enum RequestType{get,post}
 class NetworkService{
   const NetworkService._();
 
-  static String domain = 'https://stalkuat.hanzo.finance';
+  static String domain = 'https://shinobiedu.hanzo.finance';
   static Future<http.Response?>? _createRequest({
     required RequestType requestType,
     required String url,
@@ -55,7 +56,7 @@ class NetworkService{
   }) async {
     try {
       Map<String, String> header = ApplicationSetting.instance.requestHeader;
-      if (url.contains('/login')) {
+      if (url.contains('/edulogin')) {
         header['noti-token'] = ApplicationSetting.instance.notiToken;
       } else {
         header.remove('noti-token');
@@ -79,6 +80,7 @@ class NetworkService{
       DebugService.printConsole('****DEBUG LOG****');
       DebugService.printConsole('');
       DebugService.printConsole(header);
+      DebugService.printConsole(ApplicationSetting.instance.sharedPreferences.getString(SharedPreferencesEnum.HEADER.name));
       DebugService.printConsole('${timeResponse}ms: $url | $body');
       DebugService.printConsole('Status code: ${response?.statusCode}');
       DebugService.printConsole(response?.body);

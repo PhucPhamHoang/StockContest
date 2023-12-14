@@ -1,0 +1,1 @@
+enum ContestModeEnum { all, attended }

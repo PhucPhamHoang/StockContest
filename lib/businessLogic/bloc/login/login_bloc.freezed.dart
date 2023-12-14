@@ -16,43 +16,47 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LoginEvent {
-  String get userName => throw _privateConstructorUsedError;
-  String get passWord => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userName, String passWord) fetch,
+    required TResult Function(
+            String userName, String passWord, bool isSavePassword)
+        fetch,
+    required TResult Function() logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String userName, String passWord)? fetch,
+    TResult? Function(String userName, String passWord, bool isSavePassword)?
+        fetch,
+    TResult? Function()? logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userName, String passWord)? fetch,
+    TResult Function(String userName, String passWord, bool isSavePassword)?
+        fetch,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchEvent value) fetch,
+    required TResult Function(_LogOutEvent value) logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchEvent value)? fetch,
+    TResult? Function(_LogOutEvent value)? logOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchEvent value)? fetch,
+    TResult Function(_LogOutEvent value)? logOut,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $LoginEventCopyWith<LoginEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -61,8 +65,6 @@ abstract class $LoginEventCopyWith<$Res> {
   factory $LoginEventCopyWith(
           LoginEvent value, $Res Function(LoginEvent) then) =
       _$LoginEventCopyWithImpl<$Res, LoginEvent>;
-  @useResult
-  $Res call({String userName, String passWord});
 }
 
 /// @nodoc
@@ -74,35 +76,15 @@ class _$LoginEventCopyWithImpl<$Res, $Val extends LoginEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userName = null,
-    Object? passWord = null,
-  }) {
-    return _then(_value.copyWith(
-      userName: null == userName
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
-              as String,
-      passWord: null == passWord
-          ? _value.passWord
-          : passWord // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_FetchEventCopyWith<$Res>
-    implements $LoginEventCopyWith<$Res> {
+abstract class _$$_FetchEventCopyWith<$Res> {
   factory _$$_FetchEventCopyWith(
           _$_FetchEvent value, $Res Function(_$_FetchEvent) then) =
       __$$_FetchEventCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String userName, String passWord});
+  $Res call({String userName, String passWord, bool isSavePassword});
 }
 
 /// @nodoc
@@ -118,6 +100,7 @@ class __$$_FetchEventCopyWithImpl<$Res>
   $Res call({
     Object? userName = null,
     Object? passWord = null,
+    Object? isSavePassword = null,
   }) {
     return _then(_$_FetchEvent(
       null == userName
@@ -128,6 +111,10 @@ class __$$_FetchEventCopyWithImpl<$Res>
           ? _value.passWord
           : passWord // ignore: cast_nullable_to_non_nullable
               as String,
+      null == isSavePassword
+          ? _value.isSavePassword
+          : isSavePassword // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -135,16 +122,18 @@ class __$$_FetchEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_FetchEvent implements _FetchEvent {
-  const _$_FetchEvent(this.userName, this.passWord);
+  const _$_FetchEvent(this.userName, this.passWord, this.isSavePassword);
 
   @override
   final String userName;
   @override
   final String passWord;
+  @override
+  final bool isSavePassword;
 
   @override
   String toString() {
-    return 'LoginEvent.fetch(userName: $userName, passWord: $passWord)';
+    return 'LoginEvent.fetch(userName: $userName, passWord: $passWord, isSavePassword: $isSavePassword)';
   }
 
   @override
@@ -155,11 +144,14 @@ class _$_FetchEvent implements _FetchEvent {
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
             (identical(other.passWord, passWord) ||
-                other.passWord == passWord));
+                other.passWord == passWord) &&
+            (identical(other.isSavePassword, isSavePassword) ||
+                other.isSavePassword == isSavePassword));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userName, passWord);
+  int get hashCode =>
+      Object.hash(runtimeType, userName, passWord, isSavePassword);
 
   @JsonKey(ignore: true)
   @override
@@ -170,27 +162,34 @@ class _$_FetchEvent implements _FetchEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userName, String passWord) fetch,
+    required TResult Function(
+            String userName, String passWord, bool isSavePassword)
+        fetch,
+    required TResult Function() logOut,
   }) {
-    return fetch(userName, passWord);
+    return fetch(userName, passWord, isSavePassword);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String userName, String passWord)? fetch,
+    TResult? Function(String userName, String passWord, bool isSavePassword)?
+        fetch,
+    TResult? Function()? logOut,
   }) {
-    return fetch?.call(userName, passWord);
+    return fetch?.call(userName, passWord, isSavePassword);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userName, String passWord)? fetch,
+    TResult Function(String userName, String passWord, bool isSavePassword)?
+        fetch,
+    TResult Function()? logOut,
     required TResult orElse(),
   }) {
     if (fetch != null) {
-      return fetch(userName, passWord);
+      return fetch(userName, passWord, isSavePassword);
     }
     return orElse();
   }
@@ -199,6 +198,7 @@ class _$_FetchEvent implements _FetchEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchEvent value) fetch,
+    required TResult Function(_LogOutEvent value) logOut,
   }) {
     return fetch(this);
   }
@@ -207,6 +207,7 @@ class _$_FetchEvent implements _FetchEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchEvent value)? fetch,
+    TResult? Function(_LogOutEvent value)? logOut,
   }) {
     return fetch?.call(this);
   }
@@ -215,6 +216,7 @@ class _$_FetchEvent implements _FetchEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchEvent value)? fetch,
+    TResult Function(_LogOutEvent value)? logOut,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -225,17 +227,121 @@ class _$_FetchEvent implements _FetchEvent {
 }
 
 abstract class _FetchEvent implements LoginEvent {
-  const factory _FetchEvent(final String userName, final String passWord) =
-      _$_FetchEvent;
+  const factory _FetchEvent(final String userName, final String passWord,
+      final bool isSavePassword) = _$_FetchEvent;
 
-  @override
   String get userName;
-  @override
   String get passWord;
-  @override
+  bool get isSavePassword;
   @JsonKey(ignore: true)
   _$$_FetchEventCopyWith<_$_FetchEvent> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_LogOutEventCopyWith<$Res> {
+  factory _$$_LogOutEventCopyWith(
+          _$_LogOutEvent value, $Res Function(_$_LogOutEvent) then) =
+      __$$_LogOutEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LogOutEventCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res, _$_LogOutEvent>
+    implements _$$_LogOutEventCopyWith<$Res> {
+  __$$_LogOutEventCopyWithImpl(
+      _$_LogOutEvent _value, $Res Function(_$_LogOutEvent) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_LogOutEvent implements _LogOutEvent {
+  const _$_LogOutEvent();
+
+  @override
+  String toString() {
+    return 'LoginEvent.logOut()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_LogOutEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String userName, String passWord, bool isSavePassword)
+        fetch,
+    required TResult Function() logOut,
+  }) {
+    return logOut();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String userName, String passWord, bool isSavePassword)?
+        fetch,
+    TResult? Function()? logOut,
+  }) {
+    return logOut?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userName, String passWord, bool isSavePassword)?
+        fetch,
+    TResult Function()? logOut,
+    required TResult orElse(),
+  }) {
+    if (logOut != null) {
+      return logOut();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchEvent value) fetch,
+    required TResult Function(_LogOutEvent value) logOut,
+  }) {
+    return logOut(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchEvent value)? fetch,
+    TResult? Function(_LogOutEvent value)? logOut,
+  }) {
+    return logOut?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchEvent value)? fetch,
+    TResult Function(_LogOutEvent value)? logOut,
+    required TResult orElse(),
+  }) {
+    if (logOut != null) {
+      return logOut(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LogOutEvent implements LoginEvent {
+  const factory _LogOutEvent() = _$_LogOutEvent;
 }
 
 /// @nodoc

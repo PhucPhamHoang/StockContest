@@ -144,8 +144,6 @@ class NetworkHelper{
         ApplicationSetting.instance.requestHeader;
     header['cookie'] = newCookie;
     header['os-type'] = 'android';
-
-
     headers['Accept'] = '*/*';
     headers['connection'] = 'keep-alive';
     headers['Accept-Encoding'] = 'gzip, deflate, br';
@@ -156,9 +154,6 @@ class NetworkHelper{
       SharedPreferencesEnum.HEADER.name,
       json.encode(headers),
     );
-    // print("header!");
-    // print(header);
-    // print(headers);
     return headers;
   }
 }

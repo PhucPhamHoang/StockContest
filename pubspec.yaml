@@ -90,6 +90,8 @@ dependencies:
   diacritic: ^0.1.4
   freezed: ^2.3.5
   freezed_annotation: ^2.2.0
+  flutter_otp_text_field: ^1.1.0+2
+  collection: ^1.17.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
