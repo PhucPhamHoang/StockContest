@@ -23,7 +23,6 @@ class NotificationInfoModel {
   @JsonKey(name: 'isRead',)
   bool isRead;
 
-
   NotificationInfoModel(
       this.id,
       this.createddate,
